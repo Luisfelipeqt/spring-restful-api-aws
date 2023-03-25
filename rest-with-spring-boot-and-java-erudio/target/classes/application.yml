@@ -1,6 +1,10 @@
 cors:
   originPatterns: http://localhost:8080,https://erudio.com.br,http://localhost:3000
-
+security:
+  jwt:
+    token:
+      secret-key: 53cr37 #//-> nossa secret
+      expire-lenght: 3600000 #// -> quanto tempo esse token irá durar? tem que ser em millisegundos
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
