@@ -1,6 +1,5 @@
 package br.com.erudio.security.jwt;
 
-import br.com.erudio.data.vo.v1.TokenVO;
 import br.com.erudio.exceptions.InvalidJwtAuthenticationException;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -41,13 +40,13 @@ public class JwtTokenProvider {
         algorithm = Algorithm.HMAC256(secretKey.getBytes());
     }
 
-    public TokenVO createAccessToken(String username, List<String> roles){
+    public br.com.erudio.data.vo.v1.security.TokenVO createAccessToken(String username, List<String> roles){
         Date now = new Date(); // -> Pega a data atual
         Date validity = new Date(now.getTime() + validityInMilliseconds); // -> Pegando a data atual e adicionando 1H
         var accessToken = getAccessToken(username, roles, now, validity); //-> Pegando o acesso ao Token
         var refreshToken = getRefreshTokenToken(username, roles, now); //-> Revalidando o TOKEN
 
-        return new TokenVO(username, true, now, validity, accessToken, refreshToken);
+        return new br.com.erudio.data.vo.v1.security.TokenVO(username, true, now, validity, accessToken, refreshToken);
     }
 
 

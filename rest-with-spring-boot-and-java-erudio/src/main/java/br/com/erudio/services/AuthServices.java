@@ -1,7 +1,7 @@
 package br.com.erudio.services;
 
 import br.com.erudio.data.vo.v1.AccountCredentialsVO;
-import br.com.erudio.data.vo.v1.TokenVO;
+import br.com.erudio.data.vo.v1.security.TokenVO;
 import br.com.erudio.repositories.UsersRepository;
 import br.com.erudio.security.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class AuthServices {
     @SuppressWarnings("rawtypes")
     public ResponseEntity signin(AccountCredentialsVO data){
         try{
-            var username = data.getUserName();
+            var username = data.getUsername();
             var password = data.getPassword();
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(username, password));
@@ -48,6 +48,4 @@ public class AuthServices {
 
         }
     }
-
-
 }
